@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{53973DED-534D-4499-B81F-DCF56E03E13B}|Default">
+  <MonoDevelop.Ide.ItemProperties.PurpleBuzz PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PurpleBuzz/Controllers/HomeController.cs">
+    <Files>
+      <File FileName="PurpleBuzz/Program.cs" Line="21" Column="22" />
+      <File FileName="PurpleBuzz/Data/AppDbContext.cs" Line="8" Column="82" />
+      <File FileName="PurpleBuzz/Controllers/HomeController.cs" Line="13" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PurpleBuzz" expanded="True">
+            <Node name="PurpleBuzz" expanded="True" selected="True">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
