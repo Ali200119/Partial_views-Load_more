@@ -11,8 +11,8 @@ using PurpleBuzz.Data;
 namespace PurpleBuzz.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230408212800_AddContactsTable")]
-    partial class AddContactsTable
+    [Migration("20230409002400_AddTables")]
+    partial class AddTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -148,6 +148,198 @@ namespace PurpleBuzz.Migrations
                             SoftDelete = false,
                             Subtitle = "Elit, sed do eiusmod tempor",
                             Title = "Contact"
+                        });
+                });
+
+            modelBuilder.Entity("PurpleBuzz.Models.Offer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("SoftDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PackageId");
+
+                    b.ToTable("Offers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "5 Users",
+                            PackageId = 1,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "2 TB Space",
+                            PackageId = 1,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Community Forums",
+                            PackageId = 1,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Email Support",
+                            PackageId = 1,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "25 to 99 Users",
+                            PackageId = 2,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "10 TB space",
+                            PackageId = 2,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Source Files",
+                            PackageId = 2,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Live Chat",
+                            PackageId = 2,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "100 users or more",
+                            PackageId = 3,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "80 TB space",
+                            PackageId = 3,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Full Access Sources",
+                            PackageId = 3,
+                            SoftDelete = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "Customizations",
+                            PackageId = 3,
+                            SoftDelete = false
+                        });
+                });
+
+            modelBuilder.Entity("PurpleBuzz.Models.Package", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BackgroundColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ButtonOutline")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardHeight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IconColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("SoftDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TextColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Packages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BackgroundColor = "white",
+                            ButtonOutline = "primary",
+                            CardHeight = "pb-5 mt-5",
+                            IconColor = "text-secondary",
+                            Name = "Free Plan",
+                            Price = 0m,
+                            SoftDelete = false,
+                            TextColor = "black"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BackgroundColor = "bg-secondary",
+                            ButtonOutline = "light",
+                            CardHeight = "pt-3",
+                            IconColor = "text-white",
+                            Name = "Standart Plan",
+                            Price = 120m,
+                            SoftDelete = false,
+                            TextColor = "text-white"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BackgroundColor = "white",
+                            ButtonOutline = "primary",
+                            CardHeight = "pb-5 mt-5",
+                            IconColor = "text-secondary",
+                            Name = "Enterprise",
+                            Price = 840m,
+                            SoftDelete = false,
+                            TextColor = "black"
                         });
                 });
 
@@ -752,6 +944,17 @@ namespace PurpleBuzz.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PurpleBuzz.Models.Offer", b =>
+                {
+                    b.HasOne("PurpleBuzz.Models.Package", "Package")
+                        .WithMany("Offers")
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Package");
+                });
+
             modelBuilder.Entity("PurpleBuzz.Models.TeamMember", b =>
                 {
                     b.HasOne("PurpleBuzz.Models.Team", "Team")
@@ -788,6 +991,11 @@ namespace PurpleBuzz.Migrations
             modelBuilder.Entity("PurpleBuzz.Models.Category", b =>
                 {
                     b.Navigation("Works");
+                });
+
+            modelBuilder.Entity("PurpleBuzz.Models.Package", b =>
+                {
+                    b.Navigation("Offers");
                 });
 
             modelBuilder.Entity("PurpleBuzz.Models.Team", b =>
